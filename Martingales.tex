@@ -17,8 +17,8 @@
 	\section{Conditional Expectation}
 %	\begin{Prop}
 		$(\Omega,\mathcal{F},\mathbb{P})$  proability space. \\
-		$\mathcal{G}\subseteq\mathcal{F}$           $ \mathcal{G}$ sub-$\sigma$-algebra of  $\mathcal{F} $ \\
-		$ X:\Omega\to\mathbb{R} $ random variable with $ \mathbb{E}[|X|]<+\infty $
+		$\mathcal{G}\subseteq\mathcal{F}$           $ \mathcal{G}$ sub-$\sigma$-algebra of  $\mathcal{F} $ .\\
+		$ X:\Omega\to\mathbb{R} $ random variable with $ \mathbb{E}[|X|]<+\infty .$
 		\begin{defi}
 			We call conditional expectatiom of $X$ w.r.t. $\mathcal{G}$ any $\mathcal{G}$-measurable random variable $ V $ s.t.:
 			\begin{equation}
@@ -26,7 +26,7 @@
 			\end{equation}
 		\end{defi}
 		\begin{notat}
-			$V=\mathbb{E}[X|\mathcal{G}]$
+			$V=\mathbb{E}[X|\mathcal{G}]$.
 		\end{notat}
 	\begin{exi}
 		$X_1...X_n$  $ B(1,p) $ independent   $ S_n= X_1+...+X_n$ \\
@@ -36,11 +36,11 @@
 		\end{equation*}
 	\end{exi}
 \begin{proof}
-Any set in $\mathcal{G}$ is union of $ {S_n=k} $ for some $ k $'s. Therefore it suffices to show that
+Any set in $\mathcal{G}$ is union of $ {S_n=k} $ for some $ k $'s. Therefore it suffices to show that:
 \begin{equation*}
 	\int_{{S_n=k}}X_i\mathrm{d}\mathbb{P} = \int_{{S_n=k}}\frac{S_n}{n}\mathrm{d}\mathbb{P}  \qquad    \forall k=0...n
 \end{equation*}
-$ X_i  $ has values in $ {0,1} $ so
+$ X_i  $ has values in $ \{0,1\} $ so
 \begin{equation*}
 	\int_{{S_n=k}}\mathbb{I}_{X_i}\mathrm{d}\mathbb{P} = \frac{k}{n}\cdot\mathbb{P}\{S_n=k\}   \qquad   \forall k=0...n
 \end{equation*}
@@ -294,7 +294,7 @@ $ (\Omega,\mathcal{F},\mathbb{P}) $ $T$ set of times either $\mathbb{N}$ or $[0,
 \end{defi}
 \begin{exi}
 	$(X_n)_{n\geq0}$ symmetric RW on $\mathbb{Z}$ starting from $0$.\\
-	$X_n=sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\mathbb{P}\{Y_k=1\}=\frac{1}{2}$ \\
+	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\mathbb{P}\{Y_k=1\}=\frac{1}{2}$ \\
 	$(X_n)_{n\geq0}$ is a martingale w.r.t. $\{\mathcal{F}_n\}_{n\geq0}$ with $\mathcal{F}_n=\sigma(X_1,...,X_n)$.
 \end{exi}
 \begin{proof}
@@ -344,8 +344,53 @@ Stopped martingale at time $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\geq0}$
 	\end{equation*} 
 \end{rem}
 \begin{exi}
-	contenuto...
+	$(X_n)_{n\geq0}$ symmetric RW on $\mathbb{Z}$ starting from $0$ and $a,b\in\mathbb{N}$ or $a,b>0$.\\
+	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\mathbb{P}\{Y_k=1\}=\frac{1}{2}$ \\
+	We want to cpute exit probability from$(-a,b)$ either from $-a$ or $b$ and the mean exit time $T=\min{(n\geq1|X_n=-a \text{ or } X_n=b)}$ \\
+	Consider the martingales $(X_n)_{n\geq0}$ and $(X^2_n-n)_{n\geq0}$ and apply the stopping theorem: 
+	\begin{equation*}
+		\mathbb{E}[X^2_{T_{\Lambda}n}-T_{\Lambda}n]=\mathbb{E}[0]=0
+	\end{equation*}
+	\begin{equation}
+		\mathbb{E}[X^2_{T_{\Lambda}n}]=\mathbb{E}[T_{\Lambda}n]
+	\end{equation}
+Thus $ \mathbb{E}[T_{\Lambda}n]\leq\max{(a^2,b^2)} $ because $  |X^2_{T_{\Lambda}n}|\leq\max{(a^2,b^2)}$ \\
+	and $\mathbb{E}[T]=\sup_{n\geq1}\mathbb{E}[T_{\Lambda}n]$\\
+	Applying the stopping theorem to $(X_n)_{n\geq0}$:
+	\begin{equation*}
+		\mathbb{E}[X_{T_{\Lambda}n}]=\mathbb{E}[X_0]=0
+	\end{equation*}
+\begin{equation*}
+	\mathbb{E}[X_{T_{\Lambda}n}]\leq\max{(a,b)}
+\end{equation*}                                                 
+Using dominated convergence:                                    
+\begin{equation*}                                               
+	\mathbb{E}[X_{T}]=\lim_{n\to\infty}\mathbb{E}[X_{T_{\Lambda}n}]=0
+\end{equation*}
+\begin{equation*}                                               
+	0=-a\cdot\mathbb{P}\{X_T=-a\}+b\cdot\mathbb{P}\{X_T=b\}
+\end{equation*}
+Recalling that:
+\begin{equation*}                                               
+	\mathbb{P}\{X_T=-a\}+\mathbb{P}\{X_T=b\}=1
+\end{equation*}
+Solving the system:
+\begin{equation*}                                               
+	\mathbb{P}\{X_T=-a\}=\frac{b}{a+b} \qquad \mathbb{P}\{X_T=b\}=\frac{a}{a+b}
+\end{equation*}
+Then using monotone convergence on th rhs on (3) and dominated convergence on the lhs as $n\to\infty$ we obtain:
+\begin{equation*}  
+	\begin{split}
+		\mathbb{E}[T]&=\mathbb{E}[X^2_T]=a^2\cdot\mathbb{P}\{X_T=-a\}+b^2\cdot\mathbb{P}\{X_T=b\}=\\&=\frac{a^2b}{a+b}+\frac{ab^2}{a+b}=ab
+	\end{split}                                             
+\end{equation*}
 \end{exi}
+\begin{rem}
+	Note the resemblance of this result with the mean ending time starting from $i$ in the gambler's ruin problem:
+	\begin{equation*}                                               
+		\mathbb{E}_i[T]=i(N-i)
+	\end{equation*}
+\end{rem}
 \begin{rem}[Warning]
 	It is not alwayls possible to take the limit $n\to\infty$ to find $ \mathbb{E}[M_{\min{(T,t)}}]=\mathbb{E}[M_{t}] $
 \end{rem}
@@ -357,7 +402,7 @@ Stopped martingale at time $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\geq0}$
 		\lim_{n\to\infty}\mathbb{E}[X_{\min{(S,n)}}]\neq\mathbb{E}[X_{S}]
 	\end{equation*}
 \end{exi}
-How to find martingales of a discrete time MC?
+\textbf{How to find martingales of a discrete time MC?}
 \begin{teo}
 	$(X_n)_{n\geq0}$ MC with values in a discrete set $I$\\
 	$f:I\to\mathbb{R}\quad s.t. \mathbb{E}[|f(X_n)|]<+\infty$, then:
