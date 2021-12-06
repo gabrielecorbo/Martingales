@@ -238,15 +238,14 @@ If $\Phi : \mathbb{R}\to\mathbb{R}$ is convex and $\mathbb{E}[|\Phi(X)|]<+\infty
 (that also holds for conditional expectations $\Phi(\mathbb{E}[X|\mathcal{G}])\leq\mathbb{E}[\Phi(X)|\mathcal{G}]$). In our case $ \Phi(X)=|X|^p$.
 \begin{teo}
 	$X$ r.v. with $\mathbb{E}[|X|^p]<+\infty $\\
-	$V$ $\mathcal{G}$-measurable random variable with $\mathbb{E}[|V|^q]<+\infty$\\
-	with $\frac{1}{p}+\frac{1}{q}=1$ conjugate index.
-	Then.
+	$V$ $\mathcal{G}$-measurable random variable with $\mathbb{E}[|V|^q]<+\infty$ with $\frac{1}{p}+\frac{1}{q}=1$ conjugate index.
+	Then
 	\begin{equation*}
 		\mathbb{E}[V\cdot X|\mathcal{G}]=V\cdot \mathbb{E}[X|\mathcal{G}]
 	\end{equation*}
 \end{teo}
 \begin{proof}
-	$V$ indicator function $V=\mathbb{I}_G \quad G\in\mathcal{G}$ ($V$ $\mathcal{G}$-measurable), then:
+	$V$ indicator function $V=\mathbb{I}_G \quad G\in\mathcal{G}$ ($V$ $\mathcal{G}$-measurable), then, by definition of conditional expectation, $\forall G'\in \mathcal{G}$:
 \begin{equation*}
 	\begin{split}
 		\int_{G'}\mathbb{E}[\mathbb{I}_G \cdot X|\mathcal{G}]\mathrm{d}\mathbb{P}&=
@@ -256,7 +255,7 @@ If $\Phi : \mathbb{R}\to\mathbb{R}$ is convex and $\mathbb{E}[|\Phi(X)|]<+\infty
 		\int_{G'}\mathbb{I}_G \cdot\mathbb{E}[ X|\mathcal{G}]\mathrm{d}\mathbb{P}
 	\end{split}
 \end{equation*}
-by the arbitrary of $G'$: 
+by the arbitrarity of $G'$: 
 	\begin{equation*}
 	\mathbb{E}[\mathbb{I}_G\cdot X|\mathcal{G}]=\mathbb{I}_G\cdot \mathbb{E}[X|\mathcal{G}]
 \end{equation*}
@@ -264,17 +263,17 @@ by linearity:
 \begin{equation*}
 	\mathbb{E}[V\cdot X|\mathcal{G}]=V\cdot \mathbb{E}[X|\mathcal{G}] \qquad\forall V \text{simple and  $\mathcal{G}$-measurable}  
 \end{equation*} 
-If $V>0$  $V=\sup_{n\geq 1}V_n$ with $V_n$ simple   $\mathcal{G}$-measurable, so:
+If $V>0$, $V=\sup_{n\geq 1}V_n$ with $V_n$ simple   $\mathcal{G}$-measurable, so:
 \begin{equation*}
 	\mathbb{E}[V\cdot X|\mathcal{G}]=
 	\sup_{n\geq 1}\mathbb{E}[V_n\cdot X|\mathcal{G}]=
 	\sup_{n\geq 1}V_n\cdot \mathbb{E}[X|\mathcal{G}] =
 	V\cdot \mathbb{E}[X|\mathcal{G}]
 \end{equation*} 
-If $V$ is real we can write$V=V^{+}-V^{-}$ and the thesis follows.
+If $V$ is real we can write $V=V^{+}-V^{-}$ and the thesis follows.
 \end{proof}
 \begin{teo}
-$X$ r.r.v. with $\mathbb{E}[|X|^2]<+\infty $\\
+If $X$ r.r.v. with $\mathbb{E}[|X|^2]<+\infty $, then:\\
 $Z$ $\mathcal{G}$-measurable random variable with $\mathbb{E}[|Z|^2]<+\infty$\\
 \begin{equation*}
 	\mathbb{E}[|X-Z|^2]=\mathbb{E}[\ |X-\mathbb{E}[X|\mathcal{G}]|^2\ ]+\mathbb{E}[\ |\mathbb{E}[X|\mathcal{G}]-Z|^2\ ]
@@ -287,11 +286,12 @@ In particular:
 \begin{proof}
 	\begin{equation*}
 		\begin{split}
-			\mathbb{E}[|X-Z|^2]&=\mathbb{E}[\ [(X-\mathbb{E}[X|\mathcal{G}])+(\mathbb{E}[X|\mathcal{G}]-Z)]^2\ ]=\\
-			&=\mathbb{E}[\ |X-\mathbb{E}[X|\mathcal{G}]|^2\ ]+\mathbb{E}[\ |\mathbb{E}[X|\mathcal{G}]-Z|^2\ ]+2\cdot\mathbb{E}[\ [(X-\mathbb{E}[X|\mathcal{G}])(\mathbb{E}[X|\mathcal{G}]-Z)]\ ]
+			\mathbb{E}[|X-Z|^2]&=\mathbb{E}[\ [(X-\mathbb{E}[X|\mathcal{G}])+(\mathbb{E}[X|\mathcal{G}]-Z)]^2\ ]\\
+			&=\mathbb{E}[\ |X-\mathbb{E}[X|\mathcal{G}]|^2\ ]+\mathbb{E}[\ |\mathbb{E}[X|\mathcal{G}]-Z|^2\ ]\\
+			&\qquad+2\cdot\mathbb{E}[\ [(X-\mathbb{E}[X|\mathcal{G}])(\mathbb{E}[X|\mathcal{G}]-Z)]\ ]
 		\end{split}		
 	\end{equation*}
-We only need t prove that the lst term is null.
+We only need to prove that the last term is zero.
 By Projective property:
 \begin{equation*}
 \mathbb{E}[\ [(X-\mathbb{E}[X|\mathcal{G}])(\mathbb{E}[X|\mathcal{G}]-Z)]\ ]=
@@ -316,29 +316,34 @@ Finally:
 \subsection{Introduction}
 $ (\Omega,\mathcal{F},\mathbb{P}) $ $T$ set of times either $\mathbb{N}$ or $[0,\infty)$.
 \begin{defi}
-	$(M_t)_{t\in T}$ is a Martingale w.r.t. filtration $(\mathcal{F}_t)_{t\in T}$ of sub-$\sigma$-algebra   $\mathcal{F}'$ if:
+	A \textbf{filtration} on the probability space $ (\Omega,\mathcal{F},\mathbb{P})$ is a sequence ${\mathcal{F}_{t}:t=0,1,2, \cdots}$ of sub-sigma algebras of $\mathcal{F}$, such that for all $t$, $\mathcal{F}_{t} \subseteq \mathcal{F}_{t+1}$.
+\end{defi}
+The filtration represent our knowledge at successive times. This increases with time (i.e. we don't forget things).
+\begin{defi}
+	$(M_t)_{t\in T}$ is a Martingale w.r.t. a filtration $(\mathcal{F}_t)_{t\in T}$ of sub-$\sigma$-algebras of $\mathcal{F}$ if:
 	\begin{enumerate}
 		\item \textbf{(adaptedness)} $M_t$ is $\mathcal{F}_t$-measurable $\forall t\in T$
 		\item \textbf{(integrability)} $\mathbb{E}[|M_t|]<+\infty \qquad\forall t$
 		\item \textbf{(martinagle property)} $\forall s<t \qquad \mathbb{E}[M_t|\mathcal{F}_s]=M_s$
 	\end{enumerate}
-\begin{rem}
-	Filtration family $(\mathcal{F}_t)_{t\in T}$ of sub-$\sigma$-algebra   $\mathcal{F}'$ s.t. $\mathcal{F}_t\subseteq\mathcal{F}_t \qquad \forall s<t$
-\end{rem}
 \end{defi}
 \begin{exi}
 	$(X_n)_{n\geq0}$ symmetric RW on $\mathbb{Z}$ starting from $0$.\\
-	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\mathbb{P}\{Y_k=1\}=\frac{1}{2}$ \\
+	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\frac{1}{2}=\mathbb{P}\{Y_k=-1\}$ \\
 	$(X_n)_{n\geq0}$ is a martingale w.r.t. $\{\mathcal{F}_n\}_{n\geq0}$ with $\mathcal{F}_n=\sigma(X_1,...,X_n)$.
 \end{exi}
 \begin{proof}
+	We check the definition.
 	\begin{enumerate}
 		\item $X_n$ is $\mathcal{F}_n$-measurable.
 		\item $X_n$ is integrable $(|X_n|\leq n)$.
-		\item $m<n \quad \mathbb{E}[X_n|\mathcal{F}_m]=\mathbb{E}[\sum_{k=m+1}^{n}Y_k+\sum_{k=1}^{m}Y_k|\mathcal{F}_m]$
+		\item If $m<n$,
+		\begin{equation*}
+			\mathbb{E}[X_n|\mathcal{F}_m]=\mathbb{E}\left[ \sum_{k=m+1}^{n}Y_k+\sum_{k=1}^{m}Y_k|\mathcal{F}_m \right]  
+		\end{equation*}
 		The first sum is independent of $\mathcal{F}_m$, the second one is $\mathcal{F}_n$-measurable, so:
 		\begin{equation*}
-			\mathbb{E}[X_n|\mathcal{F}_m]=\mathbb{E}[\sum_{k=m+1}^{n}Y_k]+\sum_{k=1}^{m}Y_k=\sum_{k=m+1}^{n}\mathbb{E}[Y_k]+X_m=X_m
+			\mathbb{E}[X_n|\mathcal{F}_m]=\mathbb{E}\left[ \sum_{k=m+1}^{n}Y_k \right]  +\sum_{k=1}^{m}Y_k=\sum_{k=m+1}^{n}\mathbb{E}[Y_k]+X_m=X_m
 		\end{equation*}
 	Since $\mathbb{E}[Y_k]=0$.
 	\end{enumerate}
@@ -351,11 +356,13 @@ $ (\Omega,\mathcal{F},\mathbb{P}) $ $T$ set of times either $\mathbb{N}$ or $[0,
 		\item 
 		\begin{equation*}
 			\begin{split}
-				\mathbb{E}[X_n|\mathcal{F}_m]&=\mathbb{E}[X^2_n-n|\mathcal{F}_m]=\mathbb{E}[X^2_n|\mathcal{F}_m]-\mathbb{E}[n|\mathcal{F}_m]=\\
-				&=\mathbb{E}[(\sum_{k=m+1}^{n}Y_k+\sum_{k=1}^{m}Y_k)^2|\mathcal{F}_m]-n=\\
-				&=\mathbb{E}[(\sum_{k=m+1}^{n}Y_k)^2|\mathcal{F}_m]+2\cdot\mathbb{E}[(\sum_{k=m+1}^{n}Y_k)\cdot(\sum_{k=1}^{m}Y_k)|\mathcal{F}_m]+\mathbb{E}[(\sum_{k=1}^{m}Y_k)^2|\mathcal{F}_m]-n=\\
-				&=X^2_m+2\cdot X^2_m\cdot \mathbb{E}[\sum_{k=m+1}^{n}Y_k|\mathcal{F}_m]+\mathbb{E}[(\sum_{k=1}^{m}Y_k)^2]-n=\\
-				&=X^2_m+2\cdot X^2_m\cdot0+\sum_{k=1}^{m}\mathbb{E}[Y_k^2]-n=\\
+				\mathbb{E}[X_n|\mathcal{F}_m]&=\mathbb{E}[X^2_n-n|\mathcal{F}_m]\\
+				&=\mathbb{E}[X^2_n|\mathcal{F}_m]-\mathbb{E}[n|\mathcal{F}_m]=\\
+				&=\mathbb{E}\left[ \left( \sum_{k=1}^{m}Y_k+\sum_{k=m+1}^{n}Y_k \right)  ^2|\mathcal{F}_m \right]  -n=\\
+				&=\mathbb{E}\left[ \left( \sum_{k=1}^{m}Y_k \right)  ^2|\mathcal{F}_m \right]  +2\cdot\mathbb{E}\left[ \left( \sum_{k=1}^{m}Y_k \right)  \cdot\left( \sum_{k=m+1}^{n}Y_k \right)  |\mathcal{F}_m \right]  \\
+				& \qquad +\mathbb{E}\left[ \left( \sum_{k=m+1}^{n}Y_k \right)  ^2|\mathcal{F}_m \right]  -n=\\
+				&=X^2_m+2\cdot X_m\cdot \mathbb{E}\left[ \sum_{k=m+1}^{n}Y_k|\mathcal{F}_m \right]  +\mathbb{E}\left[ \left( \sum_{k=m+1}^{n}Y_k \right)  ^2 \right]  -n=\\
+				&=X^2_m+2\cdot X_m\cdot0+\sum_{k=m+1}^{n}\mathbb{E}[Y_k^2]-n=\\
 				&=X^2_m+(n-m)-n=X^2_m-m=M_m
 			\end{split}			
 		\end{equation*}
