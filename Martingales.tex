@@ -165,7 +165,7 @@ The LHS can be written as follows:
 	\item \textbf{(linear)} $\mathbb{E}[\alpha X+\beta Y|\mathcal{G}] = \alpha\cdot\mathbb{E}[X|\mathcal{G}]+\beta\cdot\mathbb{E}[Y|\mathcal{G}]$
 	\item \textbf{(positive)} $X\geq 0 \ \implies \ \mathbb{E}[X|\mathcal{G}]\geq 0$
 	\item \textbf{(normalized)} $\mathbb{E}[1|\mathcal{G}]=1$
-	\item \textbf{PROJECTIVE PROPERTY} 
+	\item \textbf{Projective Property} 
 	\begin{teo}
 		If $ \mathcal{H}$ is a sub-$\sigma$-algebra of  $\mathcal{G}$ then:
 		\begin{equation*}
@@ -316,7 +316,7 @@ Finally:
 \subsection{Introduction}
 $ (\Omega,\mathcal{F},\mathbb{P}) $ $T$ set of times either $\mathbb{N}$ or $[0,\infty)$.
 \begin{defi}
-	A \textbf{filtration} on the probability space $ (\Omega,\mathcal{F},\mathbb{P})$ is a sequence ${\mathcal{F}_{t}:t=0,1,2, \cdots}$ of sub-sigma algebras of $\mathcal{F}$, such that for all $t$, $\mathcal{F}_{t} \subseteq \mathcal{F}_{t+1}$.
+	A \textbf{filtration} on the probability space $ (\Omega,\mathcal{F},\mathbb{P})$ is a sequence ${\mathcal{F}_{t}:t=0,1,2, \ldots}$ of sub-sigma algebras of $\mathcal{F}$, such that for all $t$, $\mathcal{F}_{t} \subseteq \mathcal{F}_{t+1}$.
 \end{defi}
 The filtration represent our knowledge at successive times. This increases with time (i.e. we don't forget things).
 \begin{defi}
@@ -371,9 +371,9 @@ The filtration represent our knowledge at successive times. This increases with 
 \end{exi}
 \subsection{Stopping time}
 $T$ stopping time of the filtration $(\mathcal{F}_t)_{t\in T}$ (i.e. $\{T\leq t\}\in\mathcal{F}_t \qquad\forall t\geq0$)\\
-Stopped martingale at time $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\geq0}$
-\begin{teo}[STOPPING THEOREM]
-	$(M_{\min{(T,t)}})_{t\geq0}$ is a martingale w.r.t. $(\mathcal{F}_t)_{t\in T}$ and in particular:
+We call \textbf{stopped martingale at time} $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\geq0}$.
+\begin{teo}[Stopping Theorem]
+	$(M_{\min{(T,t)}})_{t\geq0}$ is a martingale w.r.t. the same filtration $(\mathcal{F}_t)_{t\in T}$ and in particular:
 	\begin{equation}
 		\mathbb{E}[M_{\min{(T,t)}}]=\mathbb{E}[M_{0}]
 	\end{equation}
@@ -386,17 +386,17 @@ Stopped martingale at time $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\geq0}$
 \end{rem}
 \begin{exi}
 	$(X_n)_{n\geq0}$ symmetric RW on $\mathbb{Z}$ starting from $0$ and $a,b\in\mathbb{N}$ or $a,b>0$.\\
-	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\mathbb{P}\{Y_k=1\}=\frac{1}{2}$ \\
-	We want to cpute exit probability from$(-a,b)$ either from $-a$ or $b$ and the mean exit time $T=\min{(n\geq1|X_n=-a \text{ or } X_n=b)}$ \\
+	$X_n=\sum_{k=1}^{n}Y_k \qquad Y_k$ iid with $\mathbb{P}\{Y_k=1\}=\frac{1}{2}=\mathbb{P}\{Y_k=-1\}$ \\
+	We want to compute the exit probability from $(-a,b)$ either from $-a$ or $b$ and the mean exit time $T=\min{(n\geq1|X_n=-a \text{ or } X_n=b)}$. \\
 	Consider the martingales $(X_n)_{n\geq0}$ and $(X^2_n-n)_{n\geq0}$ and apply the stopping theorem: 
 	\begin{equation*}
 		\mathbb{E}[X^2_{T_{\Lambda}n}-T_{\Lambda}n]=\mathbb{E}[0]=0
 	\end{equation*}
 	\begin{equation}
 		\mathbb{E}[X^2_{T_{\Lambda}n}]=\mathbb{E}[T_{\Lambda}n]
+		\label{eq:applying-stopping-theorem-example}
 	\end{equation}
-Thus $ \mathbb{E}[T_{\Lambda}n]\leq\max{(a^2,b^2)} $ because $  |X^2_{T_{\Lambda}n}|\leq\max{(a^2,b^2)}$ \\
-	and $\mathbb{E}[T]=\sup_{n\geq1}\mathbb{E}[T_{\Lambda}n]$\\
+Thus $ \mathbb{E}[T_{\Lambda}n]\leq\max{(a^2,b^2)} $ because $  |X^2_{T_{\Lambda}n}|\leq\max{(a^2,b^2)}$, thus we have: $\mathbb{E}[T]=\sup_{n\geq1}\mathbb{E}[T_{\Lambda}n]$\\
 	Applying the stopping theorem to $(X_n)_{n\geq0}$:
 	\begin{equation*}
 		\mathbb{E}[X_{T_{\Lambda}n}]=\mathbb{E}[X_0]=0
@@ -419,7 +419,7 @@ Solving the system:
 \begin{equation*}                                               
 	\mathbb{P}\{X_T=-a\}=\frac{b}{a+b} \qquad \mathbb{P}\{X_T=b\}=\frac{a}{a+b}
 \end{equation*}
-Then using monotone convergence on th rhs on (3) and dominated convergence on the lhs as $n\to\infty$ we obtain:
+Then using monotone convergence on the RHS on \eqref{eq:applying-stopping-theorem-example} and dominated convergence on the LHS as $n\to\infty$ we obtain:
 \begin{equation*}  
 	\begin{split}
 		\mathbb{E}[T]&=\mathbb{E}[X^2_T]=a^2\cdot\mathbb{P}\{X_T=-a\}+b^2\cdot\mathbb{P}\{X_T=b\}=\\&=\frac{a^2b}{a+b}+\frac{ab^2}{a+b}=ab
@@ -433,12 +433,12 @@ Then using monotone convergence on th rhs on (3) and dominated convergence on th
 	\end{equation*}
 \end{rem}
 \begin{rem}[Warning]
-	It is not alwayls possible to take the limit $n\to\infty$ to find $ \mathbb{E}[M_{\min{(T,t)}}]=\mathbb{E}[M_{t}] $
+	It is not always possible to take the limit $n\to\infty$ to find $ \mathbb{E}[M_{\min{(T,t)}}]=\mathbb{E}[M_{t}] $
 \end{rem}
 \begin{exi}
 	$(X_n)_{n\geq0}$ symmetric RW on $\mathbb{Z}$ starting from $0$.\\
 	$S=\min{\{n\geq1: X_n=1\}}$ \\
-	Stopping theorem $\mathbb{E}[X_{S_n}]=0 $ but $\mathbb{E}[X_{S}]=1 $, therefore:
+	Stopping theorem $\mathbb{E}[X_{\min{(S,n)}}]=0 $ but $\mathbb{E}[X_{S}]=1 $, therefore:
 	\begin{equation*}
 		\lim_{n\to\infty}\mathbb{E}[X_{\min{(S,n)}}]\neq\mathbb{E}[X_{S}]
 	\end{equation*}
@@ -446,18 +446,19 @@ Then using monotone convergence on th rhs on (3) and dominated convergence on th
 \textbf{How to find martingales of a discrete time MC?}
 \begin{teo}
 	$(X_n)_{n\geq0}$ MC with values in a discrete set $I$\\
-	$f:I\to\mathbb{R}\quad s.t. \mathbb{E}[|f(X_n)|]<+\infty$, then:
-	\begin{equation*}
+	$f:I\to\mathbb{R}\quad $ s.t. $ \mathbb{E}[|f(X_n)|]<+\infty$, then:
+	\begin{equation}
 		M_n=f(X_n)-\sum_{k=0}^{\textbf{n-1}}(Pf(X_k)-f(X_k))
-	\end{equation*}
+	\end{equation}
 $(M_n)_{n\geq0}$ is a martingale w.r.t. the natural filtration of $(X_n)_{n\geq0}$.
 Where $(Pf)(j)=\sum_{j'\in I}p_{jj'}f(j')$.
 \end{teo}
 \begin{proof}
+We check the definition:
 	\begin{enumerate}
 		\item $M_n$ is $\mathcal{F}_n$-measurable.
 		\item $M_n$ is integrable.\\
-		$\mathbb{E}[|f(X_n)|]<+\infty$ by assumptions.\\
+		$\mathbb{E}[|f(X_n)|]<+\infty$ by assumption $\forall n$.\\
 		$\mathbb{E}[|Pf(X_k)|]=\mathbb{E}[|\mathbb{E}[f(X_{k+1})|\mathcal{F}_k]|]<+\infty$
 		The equality holds since:
 		\begin{equation*}
@@ -476,16 +477,18 @@ because:
 		\item For $n>m$:
 		\begin{equation*}
 			\begin{split}
-			\mathbb{E}[M_{n}|\mathcal{F}_m]&=\mathbb{E}[f(X_n)-\sum_{k=0}^{n-1}(Pf(X_k)-f(X_k))|\mathcal{F}_m]\\&=\mathbb{E}[f(X_n)-f(X_m)-\sum_{k=m}^{n-1}(Pf(X_k)-f(X_k))|\mathcal{F}_m]+f(X_m)-\sum_{k=0}^{m-1}(Pf(X_k)-f(X_k))=\\&=(*)+M_m
+			\mathbb{E}[M_{n}|\mathcal{F}_m]&=\mathbb{E}\left[ f(X_n)-\sum_{k=0}^{n-1}(Pf(X_k)-f(X_k))\bigg|\mathcal{F}_m \right]  \\
+			&=\mathbb{E}\left[ f(X_n)-f(X_m)-\sum_{k=m}^{n-1}(Pf(X_k)-f(X_k))\bigg|\mathcal{F}_m \right]\\
+			&\qquad +\underbrace{f(X_m)-\sum_{k=0}^{m-1}(Pf(X_k)-f(X_k))}_{M_m}\\
+			&=(*)+M_m
 			\end{split}		
 		\end{equation*}
-		The last term is $M_m$ so it suffices to show that the first term is null.\\
-		It is equal to:
+		The last term is $M_m$ so it suffices to show that the first term is zero. It is equal to:
 		\begin{equation*}
 			\begin{split}
-				(*)&=\mathbb{E}[\mathbb{E}[f(X_n)-f(X_m)-\sum_{k=m}^{n-1}(Pf(X_k)-f(X_k))|\mathcal{F}_{n-1}]|\mathcal{F}_m]=\\
-				&=\mathbb{E}[Pf(X_{n-1})-f(X_m)-Pf(X_{n-1})+f(X_{n-1})-\sum_{k=m}^{n-2}(Pf(X_k)-f(X_k))|\mathcal{F}_m]=\\
-				&=\mathbb{E}[f(X_{n-1})-f(X_m)-\sum_{k=m}^{n-2}(Pf(X_k)-f(X_k))|\mathcal{F}_m]=\\
+				(*) &=\mathbb{E}\left[ \mathbb{E}\left[ f(X_n)-f(X_m)-\sum_{k=m}^{n-1}(Pf(X_k)-f(X_k))\bigg|\mathcal{F}_{n-1} \right]  \bigg|\mathcal{F}_m \right]  =\\
+				&=\mathbb{E}\left[ \cancel{Pf(X_{n-1})}-f(X_m)-\cancel{Pf(X_{n-1})}+f(X_{n-1})-\sum_{k=m}^{n-2}(\ldots )\bigg|\mathcal{F}_m \right]  =\\
+				&=\mathbb{E}\left[ f(X_{n-1})-f(X_m)-\sum_{k=m}^{n-2}(Pf(X_k)-f(X_k))\bigg|\mathcal{F}_m \right]  =\\
 				&=\text{iterating...}=\mathbb{E}[f(X_m)-f(X_m)]=0
 			\end{split}		
 		\end{equation*}
@@ -506,6 +509,6 @@ because:
 \end{equation*}
 \end{exi}
 \begin{rem}
-	If you add a constant to a martingale remains a martingale.
+	If you add a constant to a martingale it remains a martingale.
 \end{rem}
 \end{document}
