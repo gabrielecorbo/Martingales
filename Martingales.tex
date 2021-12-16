@@ -64,12 +64,12 @@ Any set in $\mathcal{G}$ is union of $ {S_n=k} $ for some $ k $'s. Therefore it 
 \end{equation*}
 $ X_i  $ has values in $ \{0,1\} $ so
 \begin{equation*}
-	\int_{\{S_n=k\}}\mathbb{I}_{\{X_i=1\}}\mathrm{d}\mathbb{P} = \frac{k}{n}\cdot\mathbb{P}\{S_n=k\}   \qquad   \forall k=0...n
+	\int_{\{S_n=k\}}\ind_{\{X_i=1\}}\mathrm{d}\mathbb{P} = \frac{k}{n}\cdot\mathbb{P}\{S_n=k\}   \qquad   \forall k=0...n
 \end{equation*}
 We call $\hat{S}_n=X_1+...+X_{i-1}+X_{i+1}+...X_n$, then:
 \begin{equation*}
 	\begin{split}
-	\int_{\{S_n=k\}}\mathbb{I}_{X_i}\mathrm{d}\mathbb{P} & = \mathbb{P}\{S_n=k,X_i=1\}\\
+	\int_{\{S_n=k\}}\ind_{X_i}\mathrm{d}\mathbb{P} & = \mathbb{P}\{S_n=k,X_i=1\}\\
 	&=\mathbb{P}\{\hat{S}_n=k-1,X_i=1\}\\
 	&=\mathbb{P}\{\hat{S}_n=k-1\}\mathbb{P}\{X_i=1\}\\
 	  & =\binom{n-1}{k-1}p^{k-1}(1-p)^{n-k}p 
@@ -148,7 +148,7 @@ Each $G$ is the countable union of a set ${X_1=i_1,...,X_n=i_n}$, therefore we m
 The LHS can be written as follows:
 \begin{equation*}
 	\begin{split}
-		\int_{\{X_1=i_1,...,X_n=i_n\}}f(X_{n+1})\mathrm{d}\mathbb{P}&=\sum_{j\in I}\int_{\{X_1=i_1,...,X_n=i_n\}}f(j)\mathbb{I}_{\{X_{n+1}\}}\mathrm{d}\mathbb{P} \\
+		\int_{\{X_1=i_1,...,X_n=i_n\}}f(X_{n+1})\mathrm{d}\mathbb{P}&=\sum_{j\in I}\int_{\{X_1=i_1,...,X_n=i_n\}}f(j)\ind_{\{X_{n+1}\}}\mathrm{d}\mathbb{P} \\
 		&=\sum_{j\in I}f(j)\mathbb{P}\{X_{n+1}=j,X_n=i_n,...,X_1=i_1\}\\
 		&=\sum_{j\in I}f(j)\mathbb{P}\{X_{n+1}=j|X_n=i_n,\cancel{...}\}\mathbb{P}\{X_n=i_n,...,X_1=i_1\} \\
 		&=\sum_{j\in I}f(j)p_{i_n j}\int_{\{X_1=i_1,...,X_n=i_n\}}\mathrm{d}\mathbb{P} \\
@@ -208,8 +208,8 @@ and since $\mathcal{H}\subseteq\mathcal{G}$, $H\in\mathcal{G}$, so:
 	Note that $ \forall B\in  \mathcal{B}(\mathbb{R}) $
 	\begin{equation*}
 		\begin{split}
-			\int_{G}\mathbb{I}_B (X)\mathrm{d}\mathbb{P}&=\mathbb{P}\left(\{X\in B\}\cap G\right)=\mathbb{P}\{X\in B\}\cdot \mathbb{P}\{G\}=\\
-			&=\int_{G}\mathbb{P}\{X\in B\}\mathrm{d}\mathbb{P}=\int_{G}\mathbb{E}[\mathbb{I}_B (X)]\mathrm{d}\mathbb{P}
+			\int_{G}\ind_B (X)\mathrm{d}\mathbb{P}&=\mathbb{P}\left(\{X\in B\}\cap G\right)=\mathbb{P}\{X\in B\}\cdot \mathbb{P}\{G\}=\\
+			&=\int_{G}\mathbb{P}\{X\in B\}\mathrm{d}\mathbb{P}=\int_{G}\mathbb{E}[\ind_B (X)]\mathrm{d}\mathbb{P}
 		\end{split}		
 	\end{equation*}
 Then $\forall f:\mathbb{R}\to\mathbb{R}$ measurable and bounded
@@ -249,19 +249,19 @@ If $\Phi : \mathbb{R}\to\mathbb{R}$ is convex and $\mathbb{E}[|\Phi(X)|]<+\infty
 	\end{equation*}
 \end{teo}
 \begin{proof}
-	$V$ indicator function $V=\mathbb{I}_G \quad G\in\mathcal{G}$ ($V$ $\mathcal{G}$-measurable), then, by definition of conditional expectation, $\forall G'\in \mathcal{G}$:
+	$V$ indicator function $V=\ind_G \quad G\in\mathcal{G}$ ($V$ $\mathcal{G}$-measurable), then, by definition of conditional expectation, $\forall G'\in \mathcal{G}$:
 \begin{equation*}
 	\begin{split}
-		\int_{G'}\mathbb{E}[\mathbb{I}_G \cdot X|\mathcal{G}]\mathrm{d}\mathbb{P}&=
-		\int_{G'}\mathbb{I}_G \cdot X\mathrm{d}\mathbb{P}=
+		\int_{G'}\mathbb{E}[\ind_G \cdot X|\mathcal{G}]\mathrm{d}\mathbb{P}&=
+		\int_{G'}\ind_G \cdot X\mathrm{d}\mathbb{P}=
 		\int_{G'\cap G}X\mathrm{d}\mathbb{P}=\\
 		&=\int_{G'\cap G}\mathbb{E}[X|\mathcal{G}]\mathrm{d}\mathbb{P}=
-		\int_{G'}\mathbb{I}_G \cdot\mathbb{E}[ X|\mathcal{G}]\mathrm{d}\mathbb{P}
+		\int_{G'}\ind_G \cdot\mathbb{E}[ X|\mathcal{G}]\mathrm{d}\mathbb{P}
 	\end{split}
 \end{equation*}
 by the arbitrarity of $G'$: 
 	\begin{equation*}
-	\mathbb{E}[\mathbb{I}_G\cdot X|\mathcal{G}]=\mathbb{I}_G\cdot \mathbb{E}[X|\mathcal{G}]
+	\mathbb{E}[\ind_G\cdot X|\mathcal{G}]=\ind_G\cdot \mathbb{E}[X|\mathcal{G}]
 \end{equation*}
 by linearity:
 \begin{equation*}
