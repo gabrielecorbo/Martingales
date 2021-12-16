@@ -13,6 +13,10 @@
 \newtheorem{teo}{Theorem}[section]
 \newtheorem*{rem}{Remark}
 \newcommand{\indep}{\perp \!\!\! \perp}
+\newcommand{\questeq}{\stackrel{?}{=}}
+\usepackage{xcolor}
+\usepackage{dsfont}
+\newcommand{\ind}{\mathds{1}}
 
 \usepackage{graphicx}
 \graphicspath{ {./images/} } % Path relative to the main .tex file 
@@ -511,4 +515,178 @@ because:
 \begin{rem}
 	If you add a constant to a martingale it remains a martingale.
 \end{rem}
+
+
+
+
+
+
+
+% lecture 15/12
+
+\begin{teo}
+	[Martingale stopping theorem] Let $\mathbb{T}$ be a set of times, $( M_{t})_{t\in \mathbb{T}}$ a Martingale w.r.t. a filtration $(\mathcal{F}_{t})_{t\in \mathbb{T}}$ and $T$ a stopping time w.r.t. $(\mathcal{F}_{t})_{t\in \mathbb{T}}$. Then $( M_{T\land t})_{t\in \mathbb{T}}$ is still a Martingale w.r.t. the same filtration $(\mathcal{F}_{t})_{t\in \mathbb{T}}$. In particular:
+	\begin{equation*}
+		\mathbb{E}[ M_{T\land t}] =\mathbb{E}[ M_{0}]
+	\end{equation*}
+\end{teo}
+\begin{proof}
+	(case with $T$ \textit{discrete} stopping time\footnote{Otherwise boring approximation stuff...}) We have to check the three properties.
+	\begin{enumerate}
+		\item (adaptedness) i.e. $\forall t$, $M_{T\land t}$ is $\mathcal{F}_{t}$-measurable.
+		      
+		      \begin{equation*}
+		      	T\ \text{discrete} \ \ \Rightarrow \ \ T=\sum\limits _{r\in D} r\ind_{\{T\leq r\}}
+		      \end{equation*}
+		      
+		      $\{T=r\} \in \mathcal{F}_{r}$ because $T$ is a stopping time.\footnote{$\{T=r\} =\{T\leqslant r\} \setminus \bigcup _{n\geqslant 1}\left\{t\leqslant r-\frac{1}{n}\right\}$. We have to use inequalities.} We can decompose the RV, one up to time $t$ and one after $t$:
+		      
+		      \begin{equation*}
+		      	M_{T\land t} =\sum _{r\in D\cap [ 0,t]}\underbrace{M_{r}\ind_{\{T=r\}}}_{ \begin{array}{l}
+		      		\mathcal{F}_{r}\text{-measurable}\\
+		      		r\leq t\\
+		      		\Rightarrow \mathcal{F}_{t}\text{-measurable}
+		      		\end{array}} +\underbrace{M_{t}}_{\mathcal{F}_{t}\text{-measurable}}\underbrace{\ind_{\{T >t\}}}_{\{T\leq t\}^{C} \in \mathcal{F}_{t}}
+		      \end{equation*}
+		      
+		      as a result, $M_{T\land t}$ is $\mathcal{F}_{t}$-measurable.
+		\item (integrability) i.e. $\mathbb{E}[| M_{T\land t}| ] < +\infty $. We can use again the decomposition. Moreover, since $D$ is discrete, this implies that $D\cap [ 0,t]$ is \textit{finite} for any $t$. Thus:
+		      
+		      \begin{equation*}
+		      	| M_{T\land t}| \leq \sum _{r\in D\cap [ 0,t]}| M_{r}| \ind_{\{T=r\}} +| M_{t}| \ind_{\{T< t\}}
+		      \end{equation*}
+		      
+		      is a finite sum of integrable RVs.
+		\item $\mathbb{E}[ M_{T\land t} |\mathcal{F}_{s}] =M_{T\land s}$ for any $s< t$, i.e. we have to check that
+		      
+		      \begin{equation*}
+		      	\forall A\in \mathcal{F}_{s} :\ \ \int _{A} M_{T\land s} d\mathbb{P} =\int _{A} M_{T\land t} d\mathbb{P}
+		      \end{equation*}
+		      
+		      Notice that both $A\cap \{T\leq s\}$ and $A\cap \{T >s\}$ belong to $\mathcal{F}_{s}$.
+		      
+		      Computing:
+		      
+		      \begin{align*}
+		      	\int _{A} M_{T\land s} d\mathbb{P} & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\int _{A\cap \{T >s\}} M_{s} d\mathbb{P}                                                                     \\
+		      	                                   & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\int _{A\cap \{T >s\}} M_{\textcolor[rgb]{0.82,0.01,0.11}{t}} d\mathbb{P}                                    \\
+		      	                                   & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\underbrace{\int _{A\cap \{s< T\leq t\}} M_{t} d\mathbb{P}}_{( *)} +\int _{A\cap \{T >t\}} M_{t} d\mathbb{P} 
+		      \end{align*}
+		      
+		      where in the second step we used the Martingale property of $( M_{t})_{t\in \mathbb{T}}$ and in the third we split the set. Notice that
+		      
+		      \begin{equation*}
+		      	( *) =\int _{A\cap \{s< T\leq t\}} M_{t} d\mathbb{P} =\sum _{r\in D\cap ( s,t]}\int _{A\cap \{T=r\}} M_{t} d\mathbb{P}
+		      \end{equation*}
+		      
+		      recall that $A\in \mathcal{F}_{s}$, $\{T=r\} \in \mathcal{F}_{r}$, $s< r$ then $A\cap \{T=r\} \in \mathcal{F}_{r}$ (the biggest). So using again the Martingale property for the given Martingale the integral in the sum can be written as
+		      
+		      \begin{equation*}
+		      	\int _{A\cap \{T=r\}} M_{t} d\mathbb{P} =\int _{A\cap \{T=r\}} M_{r} d\mathbb{P}
+		      \end{equation*}
+		      
+		      Summing up
+		      
+		      \begin{align*}
+		      	\int _{A} M_{T\land s} d\mathbb{P} & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\sum _{r\in D\cap ( s,t]}\int _{A\cap \{T=r\}} M_{r} d\mathbb{P} +\int _{A\cap \{T >t\}} M_{t} d\mathbb{P}                                                                                                                                          \\
+		      	                                   & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\sum _{r\in D\cap ( s,t]}\int _{A\cap \{T=r\}}\textcolor[rgb]{0.82,0.01,0.11}{M}\textcolor[rgb]{0.82,0.01,0.11}{_{T}} d\mathbb{P} +\int _{A\cap \{T >t\}}\textcolor[rgb]{0.82,0.01,0.11}{M}\textcolor[rgb]{0.82,0.01,0.11}{_{T\land t}} d\mathbb{P} \\
+		      	?????                              & =\int _{A\cap \{T\leq s\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{s< T\leq t\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{T >t\}} M_{T\land t} d\mathbb{P}                                                                                                                                       \\
+		      	                                   & =\int _{A} M_{T\land t} d\mathbb{P}                                                                                                                                                                                                                                                               
+		      \end{align*}
+	\end{enumerate}
+\end{proof}
+
+
+
+\textbf{Martingales of a continuous time Markov Chain}
+\begin{teo}
+	$( X_{t})_{t\geq 0}$ continuous time MC (regular..., FKE/BKE have a unique solution...). Consider $f:I\rightarrow \mathbb{R}$ such that $\mathbb{E}[| f( X_{t})| < +\infty $, $Q$ transition rate matrix, and $\mathbb{E}[| Qf( X_{s})| ] < +\infty \ \forall s$, then defining
+		\begin{equation}
+			M_{t} :=f( X_{t}) -\int _{0}^{t}( Qf)( X_{s}) ds
+			\label{eq:martingale-ct}
+		\end{equation}
+	$( M_{t})_{t\geq 0}$ is a Martingale w.r.t. the natural filtration of the given MC $( X_{t})_{t\geq 0}$, namely the collection $(\mathcal{F}_{t})_{t\geq 0}$ of $\mathcal{F}_{t} :=\sigma ( X_{s} |s\leq t)$.
+\end{teo}
+\begin{rem}
+	Compare \eqref{eq:martingale-ct} with the discrete-time analog:
+	\begin{equation*}
+		f( X_{n}) -\sum _{k=0}^{n-1}( Pf( X_{k}) -f( X_{k}))
+	\end{equation*}
+\end{rem}
+\begin{proof}
+	Recall that $\mathbb{E}[ f( X_{t}) |\mathcal{F}_{s}] =( P_{t-s} f)( X_{s})$ where $P_{t-s} =( p_{ij}( t-s))_{i,j\in I}$. We check the Martingale property:
+	\begin{equation*}
+		\mathbb{E}[ M_{t} |\mathcal{F}_{s}] \questeq M_{s}
+	\end{equation*}
+	We begin the computation
+	\begin{align*}
+		\mathbb{E}[ M_{t} |\mathcal{F}_{s}] =\mathbb{E}\left[ f( X_{t}) -\int _{0}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] & \questeq f( X_{s}) -\int _{0}^{s} Qf( X_{r}) dr=M_{s} 
+	\end{align*}
+	$\int _{0}^{t} =\int _{0}^{s} +\int _{s}^{t}$ \ \ \ ?????
+	\begin{align*}
+		\mathbb{E}\left[ f( X_{t}) -f( X_{s}) -\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] & \questeq 0                                                                        \\
+		\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}]                                        & \mathbb{\questeq E}\left[\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] =( *) 
+	\end{align*}
+	then since the conditional expectation is essentially an integral, by Fubini's theorem and remembering that $( P_{r-s} Qf)( j) =\sum _{jk} p_{ij}( r-s) q_{jk} f( k)$, we have the FKE, $\dotsc =\frac{d}{dr}\sum _{k} p_{ik}( r-s) f( k)$
+	\begin{align*}
+		( *) & =\int _{s}^{t}\mathbb{E}[ Qf( X_{r}) |\mathcal{F}_{s}] dr \\
+		     & =\int _{s}^{t}( P_{r-s} Qf)( X_{s}) dr                    \\
+		     & =\int _{s}^{t}\frac{d}{dr}( P_{r-s} f)( X_{s}) dr         \\
+		     & =( P_{r-s} f)( X_{s}) |_{s}^{t}                           \\
+		     & =P_{t-s} f( X_{s}) -f( X_{s})                             \\
+		     & =\mathbb{E}[ f( X_{t}) |\mathcal{F}_{s}] -f( X_{s})       \\
+		     & =\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}        
+	\end{align*}
+\end{proof}
+\textbf{Application/example.}
+
+Computation of the mean depletion time of an $M/M/1$ queue (i.e. mean extinction time of a population).
+
+		$( X_{t})_{t\geq 0}$ where $X_{t}$ is the number of individuals in the system, with $1$ counter. Suppose the system can host at most $N$ individuals\footnote{to avoid technical problems of integrability.} (it's not exactly a $M/M/1$ queue). The set of states is then $\{0,1,\dotsc ,N\}$.
+\begin{equation*}
+	Q=\begin{bmatrix}
+	-\lambda  & \lambda  & 0 & 0 & \cdots  & 0\\
+	\mu  & -( \lambda +\mu ) & \lambda  & 0 & \cdots  & 0\\
+	\vdots  & \ddots  & \ddots  & \ddots  & \ddots  & \vdots \\
+	0 & \cdots  & 0 & \mu  & -( \lambda +\mu ) & \lambda \\
+	0 & \cdots  & 0 & 0 & \mu  & -\mu 
+	\end{bmatrix} ,\ \ \lambda < \mu 
+\end{equation*}
+We consider as initial state $n$, where $n\ll N$, and define
+\begin{equation*}
+	T=\min\{t\geq 0|X_{t} =0\} ,
+\end{equation*}
+we want to compute $\mathbb{E}_{n}[ T]$ using the Martingales theorem.
+
+Consider $f( n) =n$:
+\begin{align*}
+	\text{if} \ n >0,\ \ Qf( n) & =\mu f( n-1) -( \lambda +\mu ) f( n) +\lambda f( n+1) \\
+	                            & =\mu ( n-1) +( \lambda +\mu ) n+\lambda ( n+1)        \\
+	                            & =\lambda -\mu                                         \\
+	\text{if} \ n=0,\ \ Qf( 0)  & =\lambda ( f( 1) -f( 0)) =\lambda                     
+\end{align*}
+The martingale is
+\begin{equation*}
+	X_{t} -\int _{0}^{t}( \lambda \ind_{\{X_{s} =0\}} +( \lambda -\mu )\ind_{\{X_{s}  >0\}}) ds
+\end{equation*}
+Martingale stopping theorem:
+\begin{equation*}
+	\mathbb{E}_{n}\left[ X_{T\land t} -\int _{0}^{T\land t}\left(\cancel{\lambda \ind_{\{X_{s} =0\}}} +( \lambda -\mu )\ind_{\{X_{s}  >0\}}\right) ds\right] =n
+\end{equation*}
+when $s< T$ you have not yet reached $0$, so the first $\ind$ is zero and the second is one.
+\begin{equation}
+	\mathbb{E}_{n}[\underbrace{X_{T\land t}}_{\geq 0} +( \mu -\lambda )( T\land t)] =n
+	\label{eq:example-ct-mart}
+\end{equation}
+thus
+\begin{equation*}
+	\mathbb{( \mu -\lambda ) E}_{n}[ T\land t] \leq n\ \ \Rightarrow \ \ \text{when} \ t\rightarrow \infty :\ \mathbb{E}_{n}[ T] \leq \frac{n}{\mu -\lambda }
+\end{equation*}
+so $T$ is integrable. Back to \eqref{eq:example-ct-mart}
+\begin{equation*}
+	X_{T\land t}\xrightarrow[\text{a.s.}]{t\rightarrow \infty } X_{T} =0\ \ \Rightarrow \ \ ( \mu -\lambda )\mathbb{E}_{n}[ T] =n\ \ \Rightarrow \ \ \mathbb{E}_{n}[ T] =\frac{n}{\mu -\lambda }
+		\end{equation*}
+		
+		
+
 \end{document}
