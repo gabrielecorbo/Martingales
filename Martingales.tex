@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage {amsmath , amssymb , amsthm }
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{dsfont}
 \newcommand{\ind}{\mathds{1}}
+\usepackage{tikz}
 
 \usepackage{graphicx}
 \graphicspath{ {./images/} } % Path relative to the main .tex file 
@@ -220,7 +221,29 @@ Hence we can construct a sequence of boundend functions to approximate the ident
 \begin{equation*}
 	f_n(x)=\max \{-n,\min \{x,n\}\}
 \end{equation*}
-\fg[Approximation of the identity map.]{0.3}{identity_approximation}
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}
+	[declare function={N = 2;}, scale=0.7]
+
+	% axis
+	\draw[thin,->] (-5,0) -- (5,0) node[anchor=north west] {$x$};
+	\draw[thin,->] (0,-3) -- (0,3) node[anchor=south east] {$y$};
+
+	% dashed
+	\draw[dashed] ( N,0) node[below] { $n$} -- ( N, N) -- (0, N) node[left]   {$n$};
+	\draw[dashed] (-N,0) node[above] {$-n$} -- (-N,-N) -- (0,-N) node[right] {$-n$};
+
+	% function
+	\draw[ultra thick] (-5,-N) -- (-N,-N) -- (N,N) -- (5,N);
+
+	\coordinate[label=below right:$0$] (o) at (0,0);
+	%\draw[step=1cm,gray,ultra thin] (-6,-N-1) grid (6,4);
+
+	\end{tikzpicture}
+	\caption{Approximation of the identity map.}
+\end{figure}
+%\fg[Approximation of the identity map.]{0.3}{identity_approximation}
 s.t.:
 \begin{equation*}
 	\int_{G}f_n (X)\mathrm{d}\mathbb{P}=\int_{G}\mathbb{E}[f_n (X)]\mathrm{d}\mathbb{P}
@@ -625,7 +648,7 @@ because:
 	$\int _{0}^{t} =\int _{0}^{s} +\int _{s}^{t}$ \ \ \ ?????
 	\begin{align*}
 		\mathbb{E}\left[ f( X_{t}) -f( X_{s}) -\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] & \questeq 0                                                                        \\
-		\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}]                                        & \mathbb{\questeq E}\left[\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] =( *) 
+		\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}]                                        & \questeq\mathbb{E}\left[\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] =( *) 
 	\end{align*}
 	then since the conditional expectation is essentially an integral, by Fubini's theorem and remembering that $( P_{r-s} Qf)( j) =\sum _{jk} p_{ij}( r-s) q_{jk} f( k)$, we have the FKE, $\dotsc =\frac{d}{dr}\sum _{k} p_{ik}( r-s) f( k)$
 	\begin{align*}
@@ -635,7 +658,7 @@ because:
 		     & =( P_{r-s} f)( X_{s}) |_{s}^{t}                           \\
 		     & =P_{t-s} f( X_{s}) -f( X_{s})                             \\
 		     & =\mathbb{E}[ f( X_{t}) |\mathcal{F}_{s}] -f( X_{s})       \\
-		     & =\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}        
+		     & =\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}]
 	\end{align*}
 \end{proof}
 \textbf{Application/example.}
