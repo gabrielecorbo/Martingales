@@ -417,23 +417,23 @@ We call \textbf{stopped martingale at time} $T$: $M^{IT}=(M_{\min{(T,t)}})_{t\ge
 	We want to compute the exit probability from $(-a,b)$ either from $-a$ or $b$ and the mean exit time $T=\min{(n\geq1|X_n=-a \text{ or } X_n=b)}$. \\
 	Consider the martingales $(X_n)_{n\geq0}$ and $(X^2_n-n)_{n\geq0}$ and apply the stopping theorem: 
 	\begin{equation*}
-		\mathbb{E}[X^2_{T_{\Lambda}n}-T_{\Lambda}n]=\mathbb{E}[0]=0
+		\mathbb{E}[X^2_{T\land n}-T\land n]=\mathbb{E}[0]=0
 	\end{equation*}
 	\begin{equation}
-		\mathbb{E}[X^2_{T_{\Lambda}n}]=\mathbb{E}[T_{\Lambda}n]
+		\mathbb{E}[X^2_{T\land n}]=\mathbb{E}[T\land n]
 		\label{eq:applying-stopping-theorem-example}
 	\end{equation}
-Thus $ \mathbb{E}[T_{\Lambda}n]\leq\max{(a^2,b^2)} $ because $  |X^2_{T_{\Lambda}n}|\leq\max{(a^2,b^2)}$, thus we have: $\mathbb{E}[T]=\sup_{n\geq1}\mathbb{E}[T_{\Lambda}n]$\\
+Thus $ \mathbb{E}[T\land n]\leq\max{(a^2,b^2)} $ because $  |X^2_{T\land n}|\leq\max{(a^2,b^2)}$, thus we have: $\mathbb{E}[T]=\sup_{n\geq1}\mathbb{E}[T\land n]$\\
 	Applying the stopping theorem to $(X_n)_{n\geq0}$:
 	\begin{equation*}
-		\mathbb{E}[X_{T_{\Lambda}n}]=\mathbb{E}[X_0]=0
+		\mathbb{E}[X_{T\land n}]=\mathbb{E}[X_0]=0
 	\end{equation*}
 \begin{equation*}
-	\mathbb{E}[X_{T_{\Lambda}n}]\leq\max{(a,b)}
+	\mathbb{E}[X_{T\land n}]\leq\max{(a,b)}
 \end{equation*}                                                 
 Using dominated convergence:                                    
 \begin{equation*}                                               
-	\mathbb{E}[X_{T}]=\lim_{n\to\infty}\mathbb{E}[X_{T_{\Lambda}n}]=0
+	\mathbb{E}[X_{T}]=\lim_{n\to\infty}\mathbb{E}[X_{T\land n}]=0
 \end{equation*}
 \begin{equation*}                                               
 	0=-a\cdot\mathbb{P}\{X_T=-a\}+b\cdot\mathbb{P}\{X_T=b\}
