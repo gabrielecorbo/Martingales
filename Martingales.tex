@@ -709,7 +709,106 @@ so $T$ is integrable. Back to \eqref{eq:example-ct-mart}
 \begin{equation*}
 	X_{T\land t}\xrightarrow[\text{a.s.}]{t\rightarrow \infty } X_{T} =0\ \ \Rightarrow \ \ ( \mu -\lambda )\mathbb{E}_{n}[ T] =n\ \ \Rightarrow \ \ \mathbb{E}_{n}[ T] =\frac{n}{\mu -\lambda }
 		\end{equation*}
-		
-		
+
+% Lecture 22/12/2021
+\begin{teo}
+	[Martingale Convergence Theorem] Given $( M_{t})_{t\geq 0}$ (with either $t\in \mathbb{N}$ or $t\in \mathbb{R}^{+}$) Martingale w.r.t. some filtration $(\mathcal{F}_{t})_{t\geq 0}$. If
+	\begin{equation*}
+		\sup _{t\geq 0}\mathbb{E}[| M_{t}| ] < +\infty 
+	\end{equation*}
+	then
+	\begin{equation*}
+		\lim\limits _{t\rightarrow +\infty } M_{t}
+	\end{equation*}
+	exists almost surely (may not be in $L^{1}$).
+\end{teo}
+\begin{exi}
+	Consider $( X_{n})_{n\geq 0}$ symmetric RW on $\mathbb{Z}$.
+	\begin{equation*}
+		X_{0} =0\ \ \ \ X_{n} =\sum\limits _{k=1}^{n} Y_{k} \ \ \ \ Y_{k} \ \text{i.i.d.} \ \mathbb{P}( Y_{k} =\pm 1) =\frac{1}{2}
+	\end{equation*}
+	Let
+	\begin{equation*}
+		M_{n} =e^{\vartheta X_{n} -cn} ,\ \ c,\vartheta \in \mathbb{R}
+	\end{equation*}
+	\begin{enumerate}
+		\item Find $c$ such that $( M_{n})_{n\geq 0}$ is a Martingale.
+		\item Show that for such $c$ and all $\vartheta $, $M_{n}$ converges a.s., but not in $L^{1}$.
+	\end{enumerate}
+
+
+
+	For $( M_{n})_{n\geq 0}$ to be a Martingale, beside checking the two basic properties, we have to check that if $\mathbb{E}[ M_{n+1} |\mathcal{F}_{n}] \questeq M_{n}$. The first quantity is equal to:
+	\begin{align*}
+		\mathbb{E}[ M_{n+1} |\mathcal{F}_{n}] & =\mathbb{E}\left[ e^{\vartheta X_{n+1} -c( n+1)} |\mathcal{F}_{n}\right]                     \\
+		                                      & =\mathbb{E}\left[ e^{\vartheta Y_{n+1} -c} e^{\vartheta X_{n} -cn} |\mathcal{F}_{n}\right]   \\
+		                                      & =\mathbb{E}\left[ e^{\vartheta Y_{n+1}} |\mathcal{F}_{n}\right] e^{\vartheta X_{n} -c( n+1)} 
+	\end{align*}
+	thus
+	\begin{align*}
+		\mathbb{E}\left[ e^{\vartheta Y_{n+1}} |\mathcal{F}_{n}\right] e^{\vartheta X_{n} -c( n+1)} & \questeq e^{\vartheta X_{n} -cn}                                                                                                  \\
+		\mathbb{E}\left[ e^{\vartheta Y_{n+1}}\right] e^{-c}                                        & \questeq 1                                                                                                                        \\
+		e^{c}                                                                                       & \questeq \mathbb{E}\left[ e^{\vartheta Y_{n+1}}\right] =\frac{1}{2}\left( e^{\vartheta } +e^{-\vartheta }\right) =\cosh \vartheta 
+	\end{align*}
+	so
+	\begin{equation*}
+		c=\log\cosh \vartheta \ \ ( =c( \vartheta ))
+	\end{equation*}
+	With such $c$, $( M_{n})_{n\geq 0}$ is a Martingale
+	\begin{equation*}
+		| M_{n}| =M_{n} \ \ \Rightarrow \ \ \mathbb{E}[| M_{n}| ] =\mathbb{E}[ M_{n}] =\mathbb{E}[ M_{0}] =1
+	\end{equation*}
+	By Martingale convergence theorem, $M_{n}\xrightarrow[n\rightarrow \infty ]{\text{a.s.}} k$ and by the Law of Large Numbers we can compute $k$.
+	\begin{equation*}
+		X_{n} =\sum\limits _{k=1}^{n} Y_{k} \ \ \Rightarrow \ \ \frac{1}{n}\sum\limits _{k=1}^{n} Y_{k}\xrightarrow[n\rightarrow \infty ]{\text{a.s.}}\mathbb{E}[ Y_{1}] =0
+	\end{equation*}
+	then
+	\begin{equation*}
+		e^{\vartheta X_{n} -c( \vartheta ) n} =\Bigg( e^{\overbrace{\vartheta \frac{1}{n}\sum _{k=1}^{n} Y_{k}}^{\rightarrow 0} -c( \vartheta )}\Bigg)^{n} \sim \left( e^{-c( \vartheta )}\right)^{n}\rightarrow 0=k
+	\end{equation*}
+	since $c( \vartheta )  >0$, $e^{-c( \vartheta )} < 1$.
+
+	Summing up:
+	\begin{equation*}
+		M_{n}\xrightarrow[n\rightarrow \infty ]{\text{a.s.}} 0\ \ \ \ \text{but} \ \ \ \ \mathbb{E}[ M_{n}] =1\ \ \Rightarrow \ \ M_{n} \nrightarrow 0\ \text{in} \ L^{1}
+	\end{equation*}
+\end{exi}
+\subsection{Supermartingales and Submartingales}
+
+Consider $( X_{t})_{t\geq 0}$ with either $t\in \mathbb{N}$ or $t\in \mathbb{R}^{+}$ and a filtration $(\mathcal{F}_{t})_{t\geq 0}$. We say that $( X_{t})_{t\geq 0}$ is a supermartingale (resp. submartingale) if
+\begin{itemize}
+	\item (adaptedness) $X_{t}$ is $\mathcal{F}_{t}$-measurable for all $t$.
+	\item (integrability) $\mathbb{E}[| X_{t}| ] < +\infty $
+	\item $\forall s< t$,\begin{align*}
+	      \mathbb{E}[ X_{t} |\mathcal{F}_{s}] \leq X_{s} & ,\ \text{for supermartingales}\\
+	      \mathbb{E}[ X_{t} |\mathcal{F}_{s}] \geq X_{s} & ,\ \text{for submartingales}
+	\end{align*}
+\end{itemize}
+\begin{rem}
+	A process is a Martingale if and only if it's both a sub- and super- Martingale.
+\end{rem}
+\begin{teo}
+	If $( M_{t})_{t\geq 0}$ is a Martingale and $\varphi :\mathbb{R}\rightarrow \mathbb{R}$ is a \textbf{convex} (resp. \textbf{concave}) function such that $\mathbb{E}[| \varphi ( M_{t})| ] < +\infty $ for any $t$, then
+	\begin{equation*}
+		( \varphi ( M_{t}))_{t\geq 0}
+	\end{equation*}
+	is a \textbf{submartingale} (resp. \textbf{supermartingale}) w.r.t. the same filtration of $( M_{t})_{t\geq 0}$.
+\end{teo}
+\begin{proof}
+	Consider $\varphi $ convex, using the Jensen inequality
+	\begin{equation*}
+		s< t\ \ \ \ \varphi ( M_{s}) =\varphi (\mathbb{E}[ M_{t} |\mathcal{F}_{s}]) \leq \mathbb{E}[ \varphi ( M_{t}) |\mathcal{F}_{s}]
+	\end{equation*}
+\end{proof}
+\textbf{Examples.}
+
+$\varphi ( x) =| x| $, $\varphi ( x) =| x| ^{2}$, $\varphi ( x) =\max\{0,x\}$.
+\subsection{Doob-Meyer decomposition.}
+
+Consider a submartingale $( X_{n})_{n\geq 0}$ with $n\in \mathbb{N}$ w.r.t. a filtration $(\mathcal{F}_{n})_{n\geq 0}$ then it can be written as
+\begin{equation*}
+	X_{n} =M_{n} +A_{n}
+\end{equation*}
+where $( M_{n})_{n\geq 0}$ is a martingale and $A_{n}$ is $\mathcal{F}_{n-1}$-measurable and increasing $A_{n+1} \geq A_{n}$ a.s.\footnote{$A_{n}$ is a \textit{predictable} process.}
 
 \end{document}
