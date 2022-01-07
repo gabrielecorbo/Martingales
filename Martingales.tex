@@ -617,7 +617,7 @@ because:
 		      \begin{align*}
 		      	\int _{A} M_{T\land s} d\mathbb{P} & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\sum _{r\in D\cap ( s,t]}\int _{A\cap \{T=r\}} M_{r} d\mathbb{P} +\int _{A\cap \{T >t\}} M_{t} d\mathbb{P}                                                                                                                                          \\
 		      	                                   & =\int _{A\cap \{T\leq s\}} M_{T} d\mathbb{P} +\sum _{r\in D\cap ( s,t]}\int _{A\cap \{T=r\}}\textcolor[rgb]{0.82,0.01,0.11}{M}\textcolor[rgb]{0.82,0.01,0.11}{_{T}} d\mathbb{P} +\int _{A\cap \{T >t\}}\textcolor[rgb]{0.82,0.01,0.11}{M}\textcolor[rgb]{0.82,0.01,0.11}{_{T\land t}} d\mathbb{P} \\
-		      	?????                              & =\int _{A\cap \{T\leq s\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{s< T\leq t\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{T >t\}} M_{T\land t} d\mathbb{P}                                                                                                                                       \\
+		      	                                   & =\int _{A\cap \{T\leq s\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{s< T\leq t\}} M_{T\land t} d\mathbb{P} +\int _{A\cap \{T >t\}} M_{T\land t} d\mathbb{P}                                                                                                                                       \\
 		      	                                   & =\int _{A} M_{T\land t} d\mathbb{P}                                                                                                                                                                                                                                                               
 		      \end{align*}
 	\end{enumerate}
@@ -649,7 +649,7 @@ because:
 	\begin{align*}
 		\mathbb{E}[ M_{t} |\mathcal{F}_{s}] =\mathbb{E}\left[ f( X_{t}) -\int _{0}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] & \questeq f( X_{s}) -\int _{0}^{s} Qf( X_{r}) dr=M_{s} 
 	\end{align*}
-	$\int _{0}^{t} =\int _{0}^{s} +\int _{s}^{t}$ \ \ \ ?????
+	$\int _{0}^{t} =\int _{0}^{s} +\int _{s}^{t}$
 	\begin{align*}
 		\mathbb{E}\left[ f( X_{t}) -f( X_{s}) -\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] & \questeq 0                                                                        \\
 		\mathbb{E}[ f( X_{t}) -f( X_{s}) |\mathcal{F}_{s}]                                        & \questeq\mathbb{E}\left[\int _{s}^{t} Qf( X_{r}) dr|\mathcal{F}_{s}\right] =( *) 
