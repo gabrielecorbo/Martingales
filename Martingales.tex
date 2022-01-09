@@ -47,7 +47,7 @@
 		$\mathcal{G}\subseteq\mathcal{F}$           $ \mathcal{G}$ sub-$\sigma$-algebra of  $\mathcal{F} $ .\\
 		$ X:\Omega\to\mathbb{R} $ random variable with $ \mathbb{E}[|X|]<+\infty .$
 		\begin{defi}
-			We call conditional expectatiom of $X$ w.r.t. $\mathcal{G}$ any $\mathcal{G}$-measurable random variable $ V $ s.t.:
+			We call conditional expectation of $X$ w.r.t. $\mathcal{G}$ any $\mathcal{G}$-measurable random variable $ V $ s.t.:
 			\begin{equation}
 				\int_{G}X\mathrm{d}\mathbb{P} = \int_{G}V\mathrm{d}\mathbb{P}  \qquad    \forall G \in \mathcal{G}
 			\end{equation}
@@ -63,7 +63,7 @@
 		\end{equation*}
 	\end{exi}
 \begin{proof}
-Any set in $\mathcal{G}$ is union of $ {S_n=k} $ for some $ k $'s. Therefore it suffices to show that:
+Any set in $\mathcal{G}$ is union of $\{S_n=k\}$ for some $k$'s. Therefore it suffices to show that:
 \begin{equation*}
 	\int_{{S_n=k}}X_i\mathrm{d}\mathbb{P} = \int_{{S_n=k}}\frac{S_n}{n}\mathrm{d}\mathbb{P}  \qquad    \forall k=0,\ldots,n
 \end{equation*}
@@ -146,7 +146,7 @@ Where $(Pf)(j)=\sum_{j'\in I}p_{jj'}f(j')$.
 	\begin{equation*}
 		\int_{G}f(X_{n+1})\mathrm{d}\mathbb{P}=\int_{G}(Pf)(X_n)\mathrm{d}\mathbb{P}
 	\end{equation*}
-Each $G$ is the countable union of a set ${X_1=i_1,\ldots,X_n=i_n}$, therefore we must show that:
+Each $G$ is the countable union of a set $\{X_1=i_1,\ldots,X_n=i_n\}$, therefore we must show that:
 \begin{equation*}
 	\int_{\{X_1=i_1,\ldots,X_n=i_n\}}f(X_{n+1})\mathrm{d}\mathbb{P}=\int_{\{X_1=i_1,\ldots,X_n=i_n\}}(Pf)(X_n)\mathrm{d}\mathbb{P}
 \end{equation*}
@@ -203,7 +203,7 @@ and since $\mathcal{H}\subseteq\mathcal{G}$, $H\in\mathcal{G}$, so:
 	\end{equation*}
 \end{defi}
 \begin{rem}
-	If $\mathcal{G}=\sigma(Y)$ the definition matches with $X \indep Y$ becaus every $ G\in  \mathcal{G} $ is in the form $\{Y\in B'\}$ with $B'\in \mathcal{B}(\mathbb{R})$.
+	If $\mathcal{G}=\sigma(Y)$ the definition matches with $X \indep Y$ because every $ G\in  \mathcal{G} $ is in the form $\{Y\in B'\}$ with $B'\in \mathcal{B}(\mathbb{R})$.
 \end{rem}
 \begin{teo}
 	 $X \indep \mathcal{G} \implies \mathbb{E}[X|\mathcal{G}]=\mathbb{E}[X]$
